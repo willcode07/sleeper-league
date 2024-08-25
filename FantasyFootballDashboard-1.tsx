@@ -59,12 +59,12 @@ export default function Component() {
     setError(null)
     try {
       // Fetch league users
-      const usersResponse = await fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`)
+      const usersResponse = await fetch(`/api/sleeper?endpoint=league/${LEAGUE_ID}/users`)
       const usersData: LeagueUser[] = await usersResponse.json()
       setLeagueUsers(usersData)
 
       // Fetch rosters
-      const rostersResponse = await fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`)
+      const rostersResponse = await fetch(`/api/sleeper?endpoint=league/${LEAGUE_ID}/rosters`)
       const rostersData: Roster[] = await rostersResponse.json()
       setRosters(rostersData)
 
@@ -85,6 +85,7 @@ export default function Component() {
     }
   }
 
+  
   const getTopPerformers = () => {
     const allPlayers = rosters.flatMap(roster => roster.players)
     return allPlayers
